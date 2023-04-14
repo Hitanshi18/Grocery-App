@@ -1,0 +1,29 @@
+.font{
+  font-size: 16px;
+}
+.copyright{
+display: flex;
+justify-content: space-between;
+margin-bottom: 50px;
+}
+.fa-facebook,.fa-instagram,.fa-linkedin,.fa-twitter{
+  margin-right: 30px;
+  color: #3BB77E;
+  font-size: 20px;
+
+}
+i{
+  color: #3BB77E;
+}
+
+li{
+  margin-top: 20px;
+}
+*{
+  margin-bottom: 20px;
+}
+
+.my-5 {
+  margin-top: 1rem!important;
+  margin-bottom: 3rem!important;
+}

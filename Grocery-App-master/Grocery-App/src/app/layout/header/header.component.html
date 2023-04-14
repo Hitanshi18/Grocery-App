@@ -1,0 +1,71 @@
+  <nav class="navbar   navbar-expand-lg bg-white mb-3" id="navbar">
+    <div class="container-fluid ms-2 me-2">
+      <div class="logoPart" style="margin-left: 50px;">
+        <a class="navbar-brand" href="">
+          <img src="../assets/logo.png" alt="Bootstrap" width="32" height="35">
+          <img src="../assets/cybercomcreation.png" alt="Bootstrap" width="196" height="44">
+        </a>
+      </div>
+          <div class="d-flex justify-content-center col-md-5 col-lg-4 ms-5" >
+            <Select class="form-select" style="margin-left: 120px; width: 200px;">
+              <option value="Select Category" selected disabled>
+                Select Category
+              </option>
+              <option value="category"  *ngFor="let category of categories"  (click)="Select_Category(category)">
+                {{ category }}
+              </option>
+            </Select>
+            <input type="text" class="form-control me-2" placeholder="Search products..." [(ngModel)]="query" style="width: 400px;">
+            <button class="btn btn-outline-success" (click)="onSearchClick()">  <span> <i class="fa fa-search"></i></span></button>
+          </div>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+            <a class="nav-link fs-5 position-relative">
+              <a (click)="Add_cart_count()" style="cursor: pointer;"><i class="fas fa-shopping-cart"></i></a>
+    
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-success"
+                *ngIf="cartItemCount > 0"
+              >
+                {{ cartItemCount }}
+                <!-- {{cartItemslength}} -->
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </a>
+            <li class="nav-item">
+              <a class="nav-link" *ngIf="subtotal" (click)="Add_cart_count()" style="cursor: pointer;">Subtotal: {{ subtotal | currency : "INR" }}</a>
+            </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-capitalize" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+              {{User_name}}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+              <li><a class="dropdown-item" [routerLink]="['front/user/user-profile']" routerLinkActive="active">Edit Profile</a></li>
+              <!-- <li><a class="dropdown-item" [routerLink]="['front/catalogue/products-list', 'all']" routerLinkActive="active">Product List</a></li> -->
+              <li>
+              <a  class="dropdown-item" [routerLink]="['front/user/registration']" routerLinkActive="active" [hidden]="!Registered_User">Registration</a>
+              </li>
+              <li>
+                <a  class="dropdown-item" [routerLink]="['front/user/login']" routerLinkActive="active" *ngIf="Login_Logout_msg=='Login';else Logout">{{Login_Logout_msg}}</a>
+               </li>
+                <ng-template #Logout>
+                <li>
+                  <a class="dropdown-item" (click)="logout()" >{{Login_Logout_msg}}</a>
+                 </li>
+                </ng-template>
+              <!-- <li><a class="dropdown-item" >Logout</a></li> -->
+            </ul>
+          </li>
+        </ul>
+      </div>  
+  </nav>
+  <nav class="navbar  text-white bg-white mt-2" id="navbar2">
+    <div class="container">
+      <div class="container-fluid d-flex justify-content-between mt-5" >
+        <a class="btn btn-success ms-5" [routerLink]="['front/catalogue/all-category']" routerLinkActive="router-link-active" >Browse All Category</a>
+        <div class="d-flex me-5"> 
+          <a class="me-2 text-success fw-bolder text-decoration-none" href="tel:+919898798658"><img width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAENElEQVR4nO1ZXYhVVRT+7M8o+tOZe9Y6MzZk4oMEFj5kRQ9F9BIFERokYUphkNaj+NTD4FOKUlgJ9VJvozSpMTnds9aZO0R/hiaIZD1YURFoU/6h/Uwje599973pPdd75XruHpgP7tOsfWavvdf61lrfBmYwgy5C4icgvA9K56B0EOX4PkwrDC26DsLboDz1v5/QH0j6+zAtUL7tFiiL2/hZJLwWKfdAaZdzaATBI+0lKH2TbZh+gfKSC/52PHMwXo1gMTLnZgjtzzbKhyE0cJGN8gp3K3+izLcjOIwsmA2lcbfJQyjHc3NthYbDDTGhjS6cfkTa19/UNgux3539SgQFoQm7sSR6qEX7Zx0ZTKDSwwgGauoETyEduLXlNcIfOWeGEQyEvs8cie5qeY0JQZP0NsTipxEExCfwivbW8QsuV44gCCS81jnyXlvrbKG06/7FFGah65DeOyH8H4RP4tO5N7W8Lo2ec3VnH4KBurYkoRdbsk8HrofyD+HRsETLfbynuObS9rzBsdYBvIqrEAyGcLVtTTJn1jS1HY1KUD6RMV38CIKD0lMu5n/Fbr4h3463O4d3IUhMYRaUv3RM9Fpubgifym6Dn0ewGIvvgfDfUJ5Ewg82tFF+2Q9alegOBAvlQZ/4jULM3JzwHndzXzUNw66PukoHXb5sa2hj+rIqOQh9aMkiSKTx3XbUzSbCVfmFlI65m9keRnVvBONAdXbX6N6GNkZZqSa/0hYEC6XXPSXnKSgSPVy7Pd6MIPE1roVw6k78s9zETuLHHduZG9yIIDFOvRA+6k78Y0sGjSC0zDtjwizInCnHC6H8m0vsoVyWsjfjw+ztMNlM+hbbIpiFzzu5J25zxhGAoeZG4Wh7u3iVbTqVJyH0nW1cC4PE90P59CUTOy0t9dRs5pV6ncw0mtU6dZEsyzuRlKKCnOFHofSXdybvZsql+XVFc8KOxrWOwKw9ameZlHvc2Jx11EbRFH6mGGcSftI7o/Rubi6YDkBp9wUnbza83jag9ajE8yyZ1ETzYaujFXMzPsx25LJZ1putc3nzlp1nmn43Xu1z0YiBRke74lB+oI4A9jZtII002yqS/j6vnWUHtQefzItxxfuyKjULf95R9VFppVdC7YHltEodrjNVMeLnjv7DSg97kjB0XVAHMOacOZfbNV8O9vbPcd89g8J6M6U36hjqzY4MXsqv+H6v+BHAieOmahtSuFykpaU1qo8e6+g+WycBX8EnIbwJo9GNbX2jXJpfIxLaiu6OzTwI4X/8XGN0s1ZEwHHqhdK3LqRGbdh2HeZhVfiLWu7QESvP5mnNFVvlq+3N/rY06WJ0MyMCVk/Z3tBJCL9vnzTM+4x5Hs8mzp883RbWRLYLE1bmccgI5+YVQBt0wZmTY9axaQGbzNFLUPogm0nMUGbf8wfbamlmMAN0FOcBIBNtnCMIeXEAAAAASUVORK5CYII=">+919898798658</a> <p class="text-success">24/7 Support Center</p>
+        </div>
+      </div> 
+    </div>
+  </nav>
+  

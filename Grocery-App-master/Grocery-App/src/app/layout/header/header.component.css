@@ -1,0 +1,61 @@
+/* routerlink active */
+
+.active{
+    font-weight:bolder;
+    }
+    
+    .nav-link{
+      color: black;
+      }
+      .nav-link:hover{
+      color: blue;
+      }
+      .dropdown-item:active{
+    background-color: white;
+      }
+    i:hover {
+      color: #007bff;
+    }
+
+    .navbar{
+       z-index: 100; 
+    }
+    #brose{
+      z-index: 25;
+    }
+    #navbar2{
+      z-index: 75;
+    }
+    @media only screen and (max-width: 991.98px) {
+  .navbar,
+  #navbar2 {
+    /* position: fixed; */
+    width: 100%;
+   margin-top: 10px;
+  }
+}
+
+.d-flex{
+  justify-content: space-between;
+}
+.search-input{
+  width:319px ;
+}
+.searchPart{
+  width: 455px;
+  height: 42px;
+}
+.categoriesPart{
+  width: 136px;
+}
+.searchBtn{
+  width: 55px;
+  height: 42px;
+  background-color: #3BB77E;
+  color: white;
+  border-radius: 0;
+}
+.container-fluid{
+    margin-top: 1rem!important;
+
+}
